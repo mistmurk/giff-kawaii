@@ -14,7 +14,7 @@ exports.handler = function(event, context, callback){
 var handlers = {
 
     'SearchIntent': function () {
-        this.emit(':tell', 'Hello World!');
+        this.emit(':tell', retString);
     }
 
 };
@@ -27,3 +27,12 @@ lookUpAnime = function(inputAnime){
 		.catch(err => return null)
 }
 
+var alexaString = this.event.request.intent.slots.anime.value;
+
+var objectJ = lookUpAnime(alexaString);
+
+if (objectJ == null) {
+	var retString = "I can't find ".concat(alexaString);
+} else {
+	var retString = objectJ.title;
+}
