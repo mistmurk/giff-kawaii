@@ -8,14 +8,25 @@ const mal = new MalApi({
 
 
 exports.handler = function(event, context, callback){
-    var alexa = Alexa.handler(event, context, callback);
+    let alexa = Alexa.handler(event, context);
+    alexa.registerHandlers(handlers);
+    alexa.execute();
 };
-
-var handlers = {
+const handlers = {
 
     'SearchIntent': function () {
         this.emit(':tell', retString);
+    },
+    'AMAZON.CancelIntent': function () {
+        this.emit(':tell', "Sayonara!");
+    },
+    'AMAZON.HelpIntent': function() {
+        this.emit(':tell', "MonikaMonikaMonikaMonikaMonikaMonika");
+    },
+    'AMAZON.StopIntent': function() {
+        this.emit(':tell', "Sayonara!");
     }
+    
 
 };
 
