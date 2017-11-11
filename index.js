@@ -1,9 +1,11 @@
 var Alexa = require("alexa-sdk");
 
-const Mal = require('../main.js');
-const auth = require('./auth.json');
+const Mal = require('mal-api')
+const mal = new MalApi({
+	username,beforged
+	password,konohanakitananimeoftheseason
+})
 
-let mal = new Mal(auth);
 
 exports.handler = function(event, context, callback){
     var alexa = Alexa.handler(event, context, callback);
@@ -18,16 +20,4 @@ var handlers = {
 };
 
 
-mal.verifyCredentials()
-	.then(user => console.log(user.username + 'verified'))
-	.catch(err => console.error(err));
 
-animeSearch = function(inputString){
-	mal.searchEntry('anime', inputString)
-		.then(animes => {
-			for(let anime of animes){
-				console.log(anime.title);
-			}
-		})
-		.catch(err => console.error(error));
-}
