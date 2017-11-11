@@ -21,3 +21,9 @@ var handlers = {
 
 
 
+lookUpAnime = function(inputAnime){
+	mal.anime.searchAnime(inputAnime)
+		.then(res => return res)
+		.catch(err => return null)
+}
+
