@@ -1,11 +1,12 @@
 {
     "name": "giff-kawaii",
     "version": "0.0.1",
-    "description": "Alexa app to integrate ",
+    "description": "Alexa app to integrate MAL",
     "keywords": [
-        "template",
-        "benchmark"
+        "alexa",
+        "anime"
     ],
+    "license": "MIT",
     "repository": "https://github.com/mistmurk/hackital2017.git",
     "dependencies": {
         "alexa-sdk": "^1.0.19"
