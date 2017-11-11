@@ -1,0 +1,17 @@
+{
+    "name": "giff-kawaii",
+    "version": "0.0.1",
+    "description": "Alexa app to integrate ",
+    "keywords": [
+        "template",
+        "benchmark"
+    ],
+    "repository": "https://github.com/mistmurk/hackital2017.git",
+    "dependencies": {
+        "alexa-sdk": "^1.0.19"
+    },
+    "main": "index",
+    "engines": {
+        "node": ">= 0.4.1"
+    }
+}
