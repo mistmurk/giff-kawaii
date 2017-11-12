@@ -27,15 +27,15 @@ const handlers = {
     'AMAZON.StopIntent': function() {
         this.emit(':tell', "Sayonara!");
     },'SearchIntent': function () {
-      var alexaString = this.event.request.intent.slots.anime.value;
+      	var alexaString = this.event.request.intent.slots.anime.value;
 
-      var objectJ = lookUpAnime(alexaString, (result) => {
+      	var objectJ = lookUpAnime(alexaString, (result) => {
 				if(result instanceof Array) {
 					result = result[0];
 				}
       	var retString = ""
       	if (result == null) {
-        	retString = "I can't find ".concat(alexaString);
+        	retString = "Sorry! I couldn't find ".concat(alexaString, ". It must be my failure to understand your instructions.");
       	} else {
         	retString = decodeURI(unescape(result.synopsis));
       	}
