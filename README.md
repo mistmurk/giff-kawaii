@@ -8,7 +8,14 @@ MAL, short for My Anime List, is the social networking site for anime/manga fans
 
 ##Usage
 
-giff-kawaii responds to simple queries for searching MAL for anime titles.
+giff-kawaii responds to simple queries for searching MAL for anime titles. Also, the program can add, remove, or update an anime on the users' MAL account.
+
+Alexa will respond with basic information about the anime, including running dates, number of episodes, rating, and synopsis.
+
+This includes a card response in the Alexa app: 
+
+![Example](https://raw.githubusercontent.com/mistmurk/giff-kawaii/master/img/AlexaCard.png)
+
 
  - Some samples for looking up anime
  ```
@@ -36,11 +43,6 @@ giff-kawaii responds to simple queries for searching MAL for anime titles.
  Alexa, tell anime list to update Death Note score to 10
  Alexa, tell anime list to update Death Note episode to 20
  ```
-
-Alexa will respond with basic information about the anime, including running dates, number of episodes, rating, and synopsis.
-
-This includes a card response in the Alexa app: 
-![Example](https://raw.githubusercontent.com/mistmurk/giff-kawaii/master/img/AlexaCard.png)
 
 Users also can perform adding, removing, rate, update anime progress from their own personal lists.  At this time, this is more of a proof of concept and only allows a single account to be logged in.
 
