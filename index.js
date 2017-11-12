@@ -32,7 +32,7 @@ const handlers = {
       	lookUpAnime(alexaString, (result) => {
       	var retString = ""
       	if (result == null) {
-        	retString = "Sorry! I couldn't find ".concat(alexaString, "Please repeat that?");
+        	retString = "Sorry! I couldn't find ".concat(alexaString, ". Please repeat that?");
 					this.emit(':tell',retString)
       	} else {
 			if(result instanceof Array) {
