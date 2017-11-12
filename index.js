@@ -29,17 +29,17 @@ const handlers = {
     },'SearchIntent': function () {
       	var alexaString = this.event.request.intent.slots.anime.value;
 
-      	var objectJ = lookUpAnime(alexaString, (result) => {
+      	lookUpAnime(alexaString, (result) => {
       	var retString = ""
       	if (result == null) {
-        	retString = "Sorry! I couldn't find ".concat(alexaString, ". It must be my failure to understand your instructions.");
+        	retString = "Sorry! I couldn't find ".concat(alexaString, "Please repeat that?");
 					this.emit(':tell',retString)
       	} else {
 			if(result instanceof Array) {
 				result = result[0];
 			}
-			retString = result.title.concat(" is an awesome ", result.type, " with ", result.episodes, " episodes with ratings of ", result.score);
-			retString = retString.concat(". Here is brief synopsis. ", cleanupSynopsis(result.synopsis));
+			retString = result.title.concat(" is a ", result.type, " anime with ", result.episodes, " episodes, scoring ratings of ", result.score, " out of 10.");
+			retString = retString.concat(" Here is a brief synopsis. ", cleanupSynopsis(result.synopsis));
 
 			var cardImage = {
 				smallImageUrl:result.image,
@@ -47,7 +47,7 @@ const handlers = {
 			}
 
 			var cardContent = "Type: " + result.type + "\nEpisodes: " + result.episodes + "\nRating: " + result.score + "/10";
-	      	
+
 	      	this.emit(':tellWithCard', retString, result.title, cardContent, cardImage);
       	}
       });
