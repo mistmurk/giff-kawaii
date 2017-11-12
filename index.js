@@ -9,6 +9,9 @@ const mal = new Mal({
 	password,
 })
 
+mal.account.verifyCredentials()
+	.then(res => console.log(res))
+	.catch(err => console.log("wtf"));
 
 exports.handler = function(event, context, callback){
     let alexa = Alexa.handler(event, context);
