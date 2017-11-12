@@ -30,17 +30,24 @@ const handlers = {
       	var alexaString = this.event.request.intent.slots.anime.value;
 
       	var objectJ = lookUpAnime(alexaString, (result) => {
-				if(result instanceof Array) {
-					result = result[0];
-				}
       	var retString = ""
       	if (result == null) {
         	retString = "Sorry! I couldn't find ".concat(alexaString, ". It must be my failure to understand your instructions.");
+					this.emit(':tell',retString)
       	} else {
+					if(result instanceof Array) {
+						result = result[0];
+					}
         	retString = cleanupSynopsis(result.synopsis);
-      	}
 
-      	this.emit(':tellWithCard', retString, result.title, "test", result.image);
+					var cardImage = {
+						smallImageUrl:result.image,
+						largeImageUrl:result.image
+					}
+
+					var cardContent = "Type: " + result.type + "\nEpisodes: " + result.episodes + "\nRating: " + result.score + "/10";
+	      	this.emit(':tellWithCard', retString, result.title, cardContent, cardImage);
+      	}
       });
 
     }
@@ -58,5 +65,5 @@ cleanupSynopsis = function(str) {
 lookUpAnime = function(inputAnime, callback){
 	mal.anime.searchAnime(inputAnime)
 		.then(res => callback(res))
-		.catch(err => console.err("err"))
+		.catch(err => callback(null));
 }
