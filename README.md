@@ -13,6 +13,7 @@ giff-kawaii responds to simple queries for searching MAL for anime titles.
 Alexa will respond with basic information about the anime, including running dates, number of episodes, rating, and synopsis.
 
 This includes a card response in the Alexa app: 
+
 ![Example](https://raw.githubusercontent.com/mistmurk/giff-kawaii/master/img/AlexaCard.png)
 
 ## Development
