@@ -1,9 +1,12 @@
 var Alexa = require("alexa-sdk");
 
 const Mal = require('mal-api')
-const mal = new MalApi({
-	"beforged",
-  "konohanakitananimeoftheseason",
+const password = "konohanakitananimeoftheseason";
+const username = "beforged";
+
+const mal = new Mal({
+	username,
+	password,
 })
 
 
@@ -18,16 +21,18 @@ const handlers = {
     'SearchIntent': function () {
       var alexaString = this.event.request.intent.slots.anime.value;
 
-      var objectJ = lookUpAnime(alexaString);
+      var objectJ = lookUpAnime(alexaString, () => {
+      	var retString = ""
+      	if (objectJ == null) {
+        	retString = "I can't find ".concat(alexaString);
+      	} else {
+        	retString = objectJ.title;
+      	}
 
-      var retString = ""
-      if (objectJ == null) {
-        retString = "I can't find ".concat(alexaString);
-      } else {
-        retString = objectJ.title;
-      }
+      	this.emit(':tell', speechOutput);
+      });
 
-      this.emit(':tell', speechOutput);
+      
     },
     'AMAZON.CancelIntent': function () {
         this.emit(':tell', "Sayonara!");
@@ -43,8 +48,8 @@ const handlers = {
 
 
 
-lookUpAnime = function(inputAnime){
+lookUpAnime = function(inputAnime, callback){
 	mal.anime.searchAnime(inputAnime)
-		.then(res => return res)
-		.catch(err => return null)
+		.then(res => callback(res))
+		.catch(err => console.err("err"))
 }
