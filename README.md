@@ -6,9 +6,9 @@
 
 giff-kawaii responds to simple queries for searching MAL for anime titles.
 
-    Alexa, anime list lookup Naruto
-    Alexa, anime list find Cowboy Bebop
-    Alexa, anime list search for Death Note
+    Alexa, tell anime list lookup Naruto
+    Alexa, ask anime list to find Cowboy Bebop
+    Alexa, use anime list to search for Death Note
 
 Alexa will respond with basic information about the anime, including running dates, number of episodes, rating, and synopsis.
 
