@@ -27,20 +27,27 @@ const handlers = {
     'AMAZON.StopIntent': function() {
         this.emit(':tell', "Sayonara!");
     },'SearchIntent': function () {
-      var alexaString = this.event.request.intent.slots.anime.value;
+      	var alexaString = this.event.request.intent.slots.anime.value;
 
-      var objectJ = lookUpAnime(alexaString, (result) => {
-				if(result instanceof Array) {
-					result = result[0];
-				}
+      	var objectJ = lookUpAnime(alexaString, (result) => {
       	var retString = ""
       	if (result == null) {
-        	retString = "I can't find ".concat(alexaString);
+        	retString = "Sorry! I couldn't find ".concat(alexaString, ". It must be my failure to understand your instructions.");
+					this.emit(':tell',retString)
       	} else {
+					if(result instanceof Array) {
+						result = result[0];
+					}
         	retString = cleanupSynopsis(result.synopsis);
-      	}
 
-      	this.emit(':tell', retString);
+					var cardImage = {
+						smallImageUrl:result.image,
+						largeImageUrl:result.image
+					}
+
+					var cardContent = "Type: " + result.type + "\nEpisodes: " + result.episodes + "\nRating: " + result.score + "/10";
+	      	this.emit(':tellWithCard', retString, result.title, cardContent, cardImage);
+      	}
       });
 
     }
@@ -58,5 +65,5 @@ cleanupSynopsis = function(str) {
 lookUpAnime = function(inputAnime, callback){
 	mal.anime.searchAnime(inputAnime)
 		.then(res => callback(res))
-		.catch(err => console.err("err"))
+		.catch(err => callback(null));
 }
