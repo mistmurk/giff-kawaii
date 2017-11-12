@@ -37,7 +37,7 @@ const handlers = {
       	if (result == null) {
         	retString = "I can't find ".concat(alexaString);
       	} else {
-        	retString = decodeURI(unescape(result.synopsis));
+        	retString = cleanupSynopsis(result.synopsis);
       	}
 
       	this.emit(':tell', retString);
@@ -47,7 +47,13 @@ const handlers = {
 
 };
 
-
+cleanupSynopsis = function(str) {
+	str = str.replace(/&.*;/g," ");
+	str = str.replace(/\\./g," ");
+	str = str.replace(/<.*>/g,"");
+	str = str.replace("[Written by MAL Rewrite]","");
+	return str;
+}
 
 lookUpAnime = function(inputAnime, callback){
 	mal.anime.searchAnime(inputAnime)
