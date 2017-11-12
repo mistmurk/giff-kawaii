@@ -22,7 +22,7 @@ const handlers = {
         this.emit(':tell', "Sayonara!");
     },
     'AMAZON.HelpIntent': function() {
-        this.emit(':tell', "MonikaMonikaMonikaMonikaMonikaMonika");
+        this.emit(':tell', "This is a program that gives you information about your favorite anime. Simply ask anime list look up any anime, and I will respond to you. I will provide the basic information that you need to judge whether or not to watch your anime. I will tell you the rating, number of episodes, the type of anime, as well as a synopsis if you so choose.");
     },
     'AMAZON.StopIntent': function() {
         this.emit(':tell', "Sayonara!");
