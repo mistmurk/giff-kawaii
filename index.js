@@ -90,11 +90,82 @@ const handlers = {
 				}
 			});
 		},'UpdateIntent': function() {
+			var alexaAnime = this.event.request.intent.slots.anime.value;
+			if(this.event.request.intent.slots.episodes.hasOwnProperty('value')) {
+				var alexaVar = this.event.request.intent.slots.episodes.value;
+				lookUpAnime(alexaAnime, (result) => {
+					if (result == null) {
+	        	var retString = "Sorry! I couldn't find ".concat(alexaString, ". Please repeat that?");
+						this.emit(':tell',retString)
+	      	} else {
+						if(result instanceof Array) {
+							result = result[0];
+						}
+						mal.anime.updateAnime(result.id, {
+							episode: alexaVar
+						}).then(res => this.emit(':tell', "Updated " + result.title + " episode to " + alexaVar))
+							.catch(err => this.emit(':tell',"Failed to update episode for " + result.title));
+					}
+				});
+			}
+			else if (this.event.request.intent.slots.score.hasOwnProperty('value')) {
+				var alexaVar = this.event.request.intent.slots.score.value;
+				lookUpAnime(alexaAnime, (result) => {
+					if (result == null) {
+	        	var retString = "Sorry! I couldn't find ".concat(alexaString, ". Please repeat that?");
+						this.emit(':tell',retString)
+	      	} else {
+						if(result instanceof Array) {
+							result = result[0];
+						}
+						mal.anime.updateAnime(result.id, {
+							score: alexaVar
+						}).then(res => this.emit(':tell', "Updated " + result.title + " score to " + alexaVar))
+							.catch(err => this.emit(':tell', "Failed to update score for " + result.title));
+					}
+				});
+			}
+			/*else if(this.event.request.intent.slots.status.hasOwnProperty('value')) {
+				var alexaVar = this.event.request.intent.slots.status.value;
+				lookUpAnime(alexaAnime, (result) => {
+					if (result == null) {
+	        	var retString = "Sorry! I couldn't find ".concat(alexaString, ". Please repeat that?");
+						this.emit(':tell',retString)
+	      	} else {
+						if(result instanceof Array) {
+							result = result[0];
+						}
+						mal.anime.updateAnime(result.id, {
+							status: convertStatus(alexaVar);
+						}).then(res => this.emit(':tell', "Updated " + result.title + " status to " + alexaVar))
+							.catch(err=> this.emit(':tell', "Failed to update status for " + result.title));
+					}
+				});
 
-			this.emit(':responseReady');
+			} */ else {
+				this.emit(':tell', "Failed to update status.");
+			}
 		}
 
 };
+
+convertStatus = function(str) {
+	if (str.lowercase() === "plan to watch") {
+		return 6;
+	}
+	else if (str.lowercase() === "watching") {
+		return 1;
+	}
+	else if (str.lowercase() === "completed") {
+		return 2;
+	}
+	else if (str.lowercase() === "on hold") {
+		return 3;
+	}
+	else if (str.lowercase() === "dropped") {
+		return 4;
+	}
+}
 
 cleanupSynopsis = function(str) {
 	str = str.replace(/&.*;/g," ");
