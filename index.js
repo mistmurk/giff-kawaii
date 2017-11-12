@@ -1,6 +1,6 @@
 var Alexa = require("alexa-sdk");
-
 const Mal = require('mal-api')
+
 const password = "konohanakitananimeoftheseason";
 const username = "beforged";
 
@@ -29,10 +29,9 @@ const handlers = {
         	retString = objectJ.title;
       	}
 
-      	this.emit(':tell', speechOutput);
+      	this.emit(':tell', retString);
       });
 
-      
     },
     'AMAZON.CancelIntent': function () {
         this.emit(':tell', "Sayonara!");
