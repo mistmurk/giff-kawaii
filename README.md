@@ -2,11 +2,11 @@
 
 *Welcome to giff-kawaii, a MAL integration skill for Amazon Echo!*
 ___
-What is MAL?
+**What is MAL?**
 MAL, short for My Anime List, is the social networking site for anime/manga fans.  The site is also the largest database, where users can make a list of all the Anime and Manga they have watched/read, hence the name.
 ___
 
-##Usage
+## Usage
 
 giff-kawaii responds to simple queries for searching MAL for anime titles. Also, the program can add, remove, or update an anime on the users' MAL account.
 
@@ -50,7 +50,7 @@ Users also can perform adding, removing, rate, update anime progress from their 
 
 giff-kawaii was developed at **Hackital 2017** by Minh Nguyen, MyeongJae *"Tommy"* Chu, Richard Yu, and Luke Vacek in 30 hours.
 
-###Roadblocks
+### Roadblocks
 
 1. Alexa's voice recognition has limitation and not compatible with Japanese titles.
 2.  MAL does not use OAuth 2.0, which we considered bypassing by implementing our own validation system.  Due to security concerns, we decided not to.
