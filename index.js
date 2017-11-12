@@ -40,7 +40,7 @@ const handlers = {
         	retString = cleanupSynopsis(result.synopsis);
       	}
 
-      	this.emit(':tell', retString);
+      	this.emit(':tellWithCard', retString, result.title, "test", result.image);
       });
 
     }
