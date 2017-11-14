@@ -1,5 +1,6 @@
 var Alexa = require("alexa-sdk");
 const Mal = require('mal-api')
+var converter = require('number-to-words')
 
 const password = "konohanakitananimeoftheseason";
 const username = "beforged";
@@ -30,6 +31,9 @@ const handlers = {
         this.emit(':tell', "Sayonara!");
     },'SearchIntent': function () {
       	var alexaString = this.event.request.intent.slots.anime.value;
+      	//this is an attempt to get rid of 1 or 2 in favor of one and two
+      	//get substring that has digits regex, and then replace with swap use number-to-words
+      	
 
       	lookUpAnime(alexaString, (result) => {
       	var retString = ""
