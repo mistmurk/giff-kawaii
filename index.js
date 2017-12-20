@@ -192,20 +192,32 @@ lookUpAnime = function(inputAnime, callback){
 stringNumberify = function(stringWithDigits){
     //arrays of index for digit substrings
     var positions = [0, 0]
-    var inDigit = false
-    for(int i = 0; i < stringWithDigits.length; i++){
-        //this should check for 
-        if(stringWithDigits.charAt(pos: i) == /d/g){
-            //checks if its in a digit
-            if(!inDigit){
-                postiions[0] = i;
+    //while has digit runs here
+    while(hasDigit(stringWithDigits)){
+        //whether or not its in a digit
+        var inDigit = false
+        for(int i = 0; i < stringWithDigits.length; i++){
+            //this should check for 
+            if(stringWithDigits.charAt(pos: i) == /d/g){ //indexof instead
+                //checks if its in a digit
+                if(!inDigit){
+                    positions[0] = i;
+                }
+            }else{ //not a digit,so if it was in a digit add to array
+                if(inDigit){
+                    positions[1] = i - 1;
+                    break;
+                }
             }
-        }else{ //not a digit,so if it was in a digit add to array
-            if(inDigit){
-                positions[1] = i;
-            }
+
         }
 
+        //have index positions, relpace the lines with numberes
+        if(postions[1] != 0){}
+            stringToBeReplaced = stringWithDigits.substring(positions[0], positions[1])
+            wordDigits = converter.toWords(stringToBeReplaced) //this is the digit in words
+            stringWithDigits.replace(stringToBeReplaced, wordDigits) //should replace
+        }
     }
 
 }
@@ -214,6 +226,7 @@ stringNumberify = function(stringWithDigits){
 //checks if there are digits still in the string
 hasDigit = function(string){
 
+    return false;
 }
 
 /*
