@@ -40,7 +40,8 @@ stringNumberify = function(stringWithDigits){
             
             //var retstring
             stringWithDigits = stringWithDigits.replace(stringToBeReplaced, wordDigits) //should replace
-            positions[0] = positions[1] = 0;
+
+            positions[0] = positions[1] = 0; // <<<---THIS BREAKS IT 
         }
     }
     console.log(stringWithDigits)
