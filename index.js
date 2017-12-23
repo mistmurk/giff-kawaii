@@ -203,7 +203,7 @@ stringNumberify = function(stringWithDigits){
         for( i = 0; i < stringWithDigits.length; i++){
             //this should check for end of string digits so it doesnt loop again and mess up
             if(stringWithDigits.charAt(i).match(/\d/) && i === stringWithDigits.length - 1){
-                positions[0] = i
+                //positions[0] = i
                 positions[1] = i + 1
                 //goes to the converter
                 break;
