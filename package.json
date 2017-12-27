@@ -10,7 +10,8 @@
     "repository": "https://github.com/mistmurk/hackital2017.git",
     "dependencies": {
         "alexa-sdk": "^1.0.19",
-        "mal-api": "^2.0.0"
+        "mal-api": "^2.0.0",
+        "number-to-words": "^1.2.3"
     },
     "main": "index",
     "engines": {
